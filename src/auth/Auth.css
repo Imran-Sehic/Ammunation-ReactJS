@@ -1,0 +1,24 @@
+.auth-form {
+    padding: 1rem;
+    position: fixed;
+    text-align: center;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid  rgb(0, 151, 136, 0.6);
+    box-shadow: 5px 5px 3px rgb(0, 151, 136, 0.6);
+}
+
+img {
+    width: 6rem;
+}
+
+input {
+    border: 2px solid black;
+}
+
+input[type=submit] {
+    padding: 0.3rem 0.6rem;
+    margin: 5px 0;
+    background: rgb(0, 151, 136);
+}

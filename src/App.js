@@ -1,25 +1,98 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component, Fragment } from "react";
+import "./App.css";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import Weapons from "./components/weapons/Weapons";
+import SingleWeapon from "./components/singleWeapon/SingleWeapon";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    isAuth: false,
+    token: null,
+    userId: null,
+    authLoading: false,
+    error: null,
+  }
+
+  componentDidMount() {
+
+  }
+
+  loginHandler = () => {
+
+  }
+
+  signupHandler = () => {
+
+  }
+
+  logoutHandler = () => {
+    this.setState({ isAuth: false, token: null });
+    localStorage.removeItem("token");
+    localStorage.removeItem("expiryDate");
+    localStorage.removeItem("userId");
+  };
+
+  render() {
+    let routes = (
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <Login
+              {...props}
+              onLogin={this.loginHandler}
+              loading={this.state.authLoading}
+            />
+          )}
+        />
+        <Route
+          path="/signup"
+          exact
+          render={(props) => (
+            <Signup
+              {...props}
+              onSignup={this.signupHandler}
+              loading={this.state.authLoading}
+            />
+          )}
+        />
+        <Redirect to="/" />
+      </Switch>
+    );
+    if (this.state.isAuth) {
+      routes = (
+        <Switch>
+          <Route
+            path="/weapons"
+            exact
+            render={(props) => (
+              <Weapons userId={this.state.userId} token={this.state.token} />
+            )}
+          />
+          <Route
+            path="/:weaponId"
+            render={(props) => (
+              <SingleWeapon
+                {...props}
+                userId={this.state.userId}
+                token={this.state.token}
+              />
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      );
+    }
+    return (
+      <Fragment>
+        {this.state.error}
+        {routes}
+      </Fragment>
+    );
+  }
 }
 
 export default App;
