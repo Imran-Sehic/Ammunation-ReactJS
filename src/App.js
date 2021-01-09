@@ -3,7 +3,9 @@ import "./App.css";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Weapons from "./components/weapons/Weapons";
+import Ammos from  "./components/ammos/Ammos";
 import SingleWeapon from "./components/singleWeapon/SingleWeapon";
+import SingleAmmo from "./components/singleAmmo/SingleAmmo";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 class App extends Component {
@@ -80,6 +82,20 @@ class App extends Component {
                 userId={this.state.userId}
                 token={this.state.token}
               />
+            )}
+          />
+          <Route
+            path="/ammos"
+            exact
+            render={(props) => (
+              <Ammos userId={this.state.userId} token={this.state.token} />
+            )}
+          />
+          <Route
+            path="/:ammoId"
+            exact
+            render={(props) => (
+              <SingleAmmo userId={this.state.userId} token={this.state.token} />
             )}
           />
           <Redirect to="/" />

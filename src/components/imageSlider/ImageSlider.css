@@ -1,0 +1,27 @@
+.slider {
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 100%;
+}
+
+.sliderOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .sliderOptions i {
+    font-size: 20px;
+    width: 1rem;
+    padding: 3px;
+    color: whitesmoke;
+    background:  rgb(0, 102, 92);
+    transition: 0.5s all ease-in-out;
+}
+
+.slider .sliderOptions i:hover {
+    background: rgb(0, 151, 136);
+}
