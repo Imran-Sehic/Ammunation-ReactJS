@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Style.css";
 
 const ImageSlider = (props) => {
   const [image, setImage] = useState(props.images[0]);
